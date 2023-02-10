@@ -24,16 +24,24 @@ version keyword:
 
 No other available yet.
 
-Vector `v`:
+Vector `v` mapping:
 
 1,33:36 - General Health(GH) - 1, 11a:11d
+
 3:12 - Physical functioning (PF) - 3a:3j
+
 13:16 - Role-Physical Functioning (RP) - 4a:4d
+
 17:19 - RoleEmotional (RE) - 5a:5c
+
 20,32 - Social Functioning (SF) - 6,10
+
 21,22 - Bodily pain (BP) - 7,8
+
 24:26,28,30 - Mental Health (MH) - 9b:9d, 9f, 9h
+
 23,27,29,31 - Vitality (VT) - 9a, 9e, 9g, 9i 
+
 
 
 ## Reference
