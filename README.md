@@ -2,6 +2,15 @@
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://PharmCat.github.io/SF36.jl/stable/) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://PharmCat.github.io/SF36.jl/dev/) [![Build Status](https://github.com/PharmCat/SF36.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/PharmCat/SF36.jl/actions/workflows/CI.yml?query=branch%3Amain) [![Coverage](https://codecov.io/gh/PharmCat/SF36.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/PharmCat/SF36.jl)
 
+## Install
+
+```
+import Pkg
+Pkg.add(url="https://github.com/PharmCat/SF36.jl.git")
+```
+
+## Using
+
 ```
     sf36(v::AbstractVector; version = :v1)
 ```
@@ -27,6 +36,8 @@ Vector `v`:
 23,27,29,31 - Vitality (VT) - 9a, 9e, 9g, 9i 
 
 
-# Ware, John & MA, Kosinski & Keller, S.D.. (1993). SF-36 Physical and Mental Health Summary Scales: a User's Manual. 8. 23-28.
-# Ware, John & Kosinski, M. & Gandek, B.. (1993). SF-36 Health Survey: Manual & Interpretation Guide. Lincoln, RI: QualityMetric Incorporated.
-# Jenkinson C, Stewart-Brown S, Petersen S, Paice C. Assessment of the SF-36 version 2 in the United Kingdom. J Epidemiol Community Health. 1999 Jan;53(1):46-50. doi: 10.1136/jech.53.1.46. PMID: 10326053; PMCID: PMC1756775.
+## Reference
+
+* Ware, John & MA, Kosinski & Keller, S.D.. (1993). SF-36 Physical and Mental Health Summary Scales: a User's Manual. 8. 23-28.
+* Ware, John & Kosinski, M. & Gandek, B.. (1993). SF-36 Health Survey: Manual & Interpretation Guide. Lincoln, RI: QualityMetric Incorporated.
+* Jenkinson C, Stewart-Brown S, Petersen S, Paice C. Assessment of the SF-36 version 2 in the United Kingdom. J Epidemiol Community Health. 1999 Jan;53(1):46-50. doi: 10.1136/jech.53.1.46. PMID: 10326053; PMCID: PMC1756775.
