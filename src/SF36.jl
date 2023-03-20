@@ -8,7 +8,7 @@ module SF36
 
 import Base: show
 
-export sf36
+export sf36, sf12
 
 struct SF36Result
     PCS::Float64
@@ -21,6 +21,11 @@ struct SF36Result
     SF::Float64
     RE::Float64
     MH::Float64
+end
+
+struct SF12Result
+    PCS::Float64
+    MCS::Float64
 end
 
 function scorev1(v)
@@ -261,6 +266,89 @@ function sf36(v::AbstractVector; version = :v1)
     MH)
 end #sf36(v) end
 
+
+const sf12pwdict = Dict(:PF02 => [-7.23216, -3.45555, 0], :PF04 => [-6.24397, -2.73557, 0], :RP2 => [-4.61617, 0], 
+:RP3 => [-5.51747, 0], :BP2 => [-11.25544, -8.38063, -6.50522, -3.80130, 0], :GH1 => [-8.37399, -5.56461, -3.02396, -1.31872, 0],
+:VT2 => [-2.44706, -2.02168, -1.6185, -1.14387, -0.42251, 0], :SF2 => [-0.33682, -0.94342, -0.18043, 0.11038, 0], #:SF2 => [-0.33682, -0.94342, -0.56193, -0.18043, 0],
+:RE2 => [3.04365, 0], :RE3 => [2.32091, 0], :MH3 => [3.46638, 2.90426, 2.37241, 1.36689, 0.66514, 0], 
+:MH4 => [4.61446, 3.41593, 2.34247, 1.28044, 0.41188, 0])
+
+const sf12mwdict = Dict(:PF02 => [3.93115, 1.8684, 0], :PF04 => [2.68282, 1.43103, 0], :RP2 => [1.4406, 0], 
+:RP3 => [1.66968, 0], :BP2 => [1.48619, 1.7669, 1.49384, 0.90384, 0], :GH1 => [-1.71175, -0.16891, 0.03482, -0.06064, 0],
+:VT2 => [-6.02409, -4.88962, -3.29805, -1.65178, -0.92057, 0], :SF2 => [-6.29724, -8.26066, -5.63286, -3.13896,  0], #:SF2 => [-6.29724, -8.26066, -6.94676, -5.63286, 0],
+:RE2 => [-6.82672, 0], :RE3 => [-5.69921, 0], :MH3 => [-10.19085, -7.92717, -6.31121, -4.09842, -1.94949, 0], 
+:MH4 => [-16.15395, -10.77911, -8.09914, -4.59055, -1.95934, 0])
+
+#=
+1 - GH1 
+2 - PF02
+3 - PF04
+4 - RP2
+5 - RP3
+6 - RE2
+7 - RE3
+8 - BP2
+9 - MH3
+10 - VT2
+11 - MH4
+12 - SF2
+=#
+
+"""
+    sf12(v::AbstractVector{Int}; version = :v1)
+
+Calculate SF12 results for vector of answers `v`.
+
+1 - GH1 
+2 - PF02
+3 - PF04
+4 - RP2
+5 - RP3
+6 - RE2
+7 - RE3
+8 - BP2
+9 - MH3
+10 - VT2
+11 - MH4
+12 - SF2
+
+Reference:
+
+Ware Jr, John E., Mark Kosinski, and Susan D. Keller. "A 12-Item Short-Form Health Survey: construction of scales and preliminary tests of reliability and validity." Medical care 34.3 (1996): 220-233.Validation Literature:
+
+Gandek, Barbara, et al. "Cross-validation of item selection and scoring for the SF-12 Health Survey in nine countries: results from the IQOLA Project." Journal of clinical epidemiology51.11 (1998): 1171-1178.
+Jenkinson, Crispin, et al. "A shorter form health survey: can the SF-12 replicate results from the SF-36 in longitudinal studies?." Journal of Public Health 19.2 (1997): 179-186.Additional Literature:
+
+Ware, John E., Susan D. Keller, and Mark Kosinski. SF-12: How to score the SF-12 physical and mental health summary scales. Health Institute, New England Medical Center, 1995.
+
+See also: https://orthotoolkit.com/sf-12/
+
+https://www.researchgate.net/profile/John-Ware-6/publication/291994160_How_to_score_SF-12_items/links/58dfc42f92851c369548e04e/How-to-score-SF-12-items.pdf
+
+"""
+function sf12(v::AbstractVector{Int})
+    
+    PF02 = (sf12pwdict[:PF02][v[2]], sf12mwdict[:PF02][v[2]]) #
+    PF04 = (sf12pwdict[:PF04][v[3]], sf12mwdict[:PF04][v[3]]) #
+    RP2 = (sf12pwdict[:RP2][v[4]], sf12mwdict[:RP2][v[4]]) #
+    RP3 = (sf12pwdict[:RP3][v[5]], sf12mwdict[:RP3][v[5]]) #
+    BP2 = (sf12pwdict[:BP2][6 - v[8]], sf12mwdict[:BP2][6 - v[8]]) #
+    GH1 = (sf12pwdict[:GH1][6 - v[1]], sf12mwdict[:GH1][6 - v[1]]) #
+    VT2 = (sf12pwdict[:VT2][7 - v[10]], sf12mwdict[:VT2][7 - v[10]]) #
+    SF2 = (sf12pwdict[:SF2][v[12]], sf12mwdict[:SF2][v[12]])
+    RE2 = (sf12pwdict[:RE2][v[6]], sf12mwdict[:RE2][v[6]]) #
+    RE3 = (sf12pwdict[:RE3][v[7]], sf12mwdict[:RE3][v[7]]) #
+    MH3 = (sf12pwdict[:MH3][7 - v[9]], sf12mwdict[:MH3][7 - v[9]])
+    MH4 = (sf12pwdict[:MH4][v[11]], sf12mwdict[:MH4][v[11]])
+
+    PCS = PF02[1] + PF04[1] + RP2[1] + RP3[1] + BP2[1] + GH1[1] + VT2[1] + SF2[1] + RE2[1] + RE3[1] + MH3[1] + MH4[1]
+    MCS = PF02[2] + PF04[2] + RP2[2] + RP3[2] + BP2[2] + GH1[2] + VT2[2] + SF2[2] + RE2[2] + RE3[2] + MH3[2] + MH4[2]
+
+    SF12Result(PCS + 56.57706, MCS + 60.75781)
+end
+
+
+
 function Base.show(io::IO, sf::SF36Result)
     println(io, "Physical Functioning (PF)      ", round(sf.PF, digits = 2))
     println(io, "Role-Physical Functioning (RP) ", round(sf.RP, digits = 2))
@@ -271,9 +359,15 @@ function Base.show(io::IO, sf::SF36Result)
     println(io, "Role Emotional (RE)            ", round(sf.RE, digits = 2))
     println(io, "Mental Health (MH)             ", round(sf.MH, digits = 2))
     println(io, "-------------------------------")
-    println(io, "Physical health (PCS)          ", round(sf.PCS, digits = 2))
-    println(io, "Mental Health (MCS)            ", round(sf.MCS, digits = 2))
+    println(io, "Physical health (PCS)          ", round(sf.PCS, digits = 4))
+    println(io, "Mental Health (MCS)            ", round(sf.MCS, digits = 4))
 end
+
+function Base.show(io::IO, sf::SF12Result)
+    println(io, "Physical health (PCS)          ", round(sf.PCS, digits = 4))
+    println(io, "Mental Health (MCS)            ", round(sf.MCS, digits = 4))
+end
+
 
 
 end

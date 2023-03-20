@@ -43,6 +43,12 @@ Vector `v` mapping:
 23,27,29,31 - Vitality (VT) - 9a, 9e, 9g, 9i 
 
 
+Also SF12 available:
+
+```
+    sf12(v::AbstractVector{Int})
+```
+
 
 ## Reference
 
