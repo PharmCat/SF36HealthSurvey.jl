@@ -1,12 +1,12 @@
-# SF36 
+# SF36HealthSurvey 
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://PharmCat.github.io/SF36.jl/stable/) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://PharmCat.github.io/SF36.jl/dev/) [![Build Status](https://github.com/PharmCat/SF36.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/PharmCat/SF36.jl/actions/workflows/CI.yml?query=branch%3Amain) [![Coverage](https://codecov.io/gh/PharmCat/SF36.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/PharmCat/SF36.jl)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://PharmCat.github.io/SF36HealthSurvey.jl/stable/) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://PharmCat.github.io/SF36HealthSurvey.jl/dev/) [![Build Status](https://github.com/PharmCat/SF36HealthSurvey.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/PharmCat/SF36HealthSurvey.jl/actions/workflows/CI.yml?query=branch%3Amain) [![Coverage](https://codecov.io/gh/PharmCat/SF36HealthSurvey.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/PharmCat/SF36HealthSurvey.jl)
 
 ## Install
 
 ```
 import Pkg
-Pkg.add(url="https://github.com/PharmCat/SF36.jl.git")
+Pkg.add(url="https://github.com/PharmCat/SF36HealthSurvey.jl.git")
 ```
 
 ## Using
@@ -42,6 +42,7 @@ Vector `v` mapping:
 
 23,27,29,31 - Vitality (VT) - 9a, 9e, 9g, 9i 
 
+## SF12
 
 Also SF12 available:
 

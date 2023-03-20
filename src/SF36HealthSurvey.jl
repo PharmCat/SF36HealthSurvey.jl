@@ -4,7 +4,7 @@
 # Crispin Jenkinson, Comparison of UK and US methods for weighting and scoring the SF-36 summary measures
 # Grassi, M. and Nucera, A. (2010), Dimensionality and Summary Measures of the SF-36 v1.6: Comparison of Scale- and Item-Based Approach Across ECRHS II Adults Population. Value in Health, 13: 469-478. https://doi.org/10.1111/j.1524-4733.2010.00703.x
 
-module SF36
+module SF36HealthSurvey
 
 import Base: show
 

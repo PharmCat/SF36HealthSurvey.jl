@@ -56,5 +56,5 @@ jobs:
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
             using SF36
-            DocMeta.setdocmeta!(SF36, :DocTestSetup, :(using SF36); recursive=true)
-            doctest(SF36)'
+            DocMeta.setdocmeta!(SF36HealthSurvey, :DocTestSetup, :(using SF36HealthSurvey); recursive=true)
+            doctest(SF36HealthSurvey)'
