@@ -4,7 +4,7 @@ using Documenter
 DocMeta.setdocmeta!(SF36HealthSurvey, :DocTestSetup, :(using SF36HealthSurvey); recursive=true)
 
 makedocs(;
-    modules=[SF36],
+    modules=[SF36HealthSurvey],
     authors="Vladimir Arnautov",
     repo="https://github.com/PharmCat/SF36HealthSurvey.jl/blob/{commit}{path}#{line}",
     sitename="SF36HealthSurvey.jl",
