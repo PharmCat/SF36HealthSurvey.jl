@@ -1,3 +1,3 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
-SF36 = "727fe6bb-9b0f-4205-9895-5e3cff32d72d"
+SF36HealthSurvey = "727fe6bb-9b0f-4205-9895-5e3cff32d72d"
