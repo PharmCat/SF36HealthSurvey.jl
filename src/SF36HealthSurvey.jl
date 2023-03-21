@@ -79,17 +79,23 @@ version keyword:
 * `:v1` - General US population (Ware, John & MA, Kosinski & Keller, S.D.. (1993). SF-36 Physical and Mental Health Summary Scales: a User's Manual. 8. 23-28.)
 * `:v2` - Correlated scores (Grassi, M. and Nucera, A. (2010), Dimensionality and Summary Measures of the SF-36 v1.6: Comparison of Scale- and Item-Based Approach Across ECRHS II Adults Population. Value in Health, 13: 469-478.)
 
-No other available yet.
 
 Vector `v`:
 
 1,33:36 - General Health(GH) - 1, 11a:11d
+
 3:12 - Physical functioning (PF) - 3a:3j
+
 13:16 - Role-Physical Functioning (RP) - 4a:4d
+
 17:19 - RoleEmotional (RE) - 5a:5c
+
 20,32 - Social Functioning (SF) - 6,10
+
 21,22 - Bodily pain (BP) - 7,8
+
 24:26,28,30 - Mental Health (MH) - 9b:9d, 9f, 9h
+
 23,27,29,31 - Vitality (VT) - 9a, 9e, 9g, 9i 
 
 """
@@ -98,10 +104,10 @@ function sf36(v::AbstractVector; version = :v1)
     if length(v) != 36 error("Length is not 36!") end
 
     #Physical functioning - PF
-    PFsum = sum(v[3:12])
+    PFsum = sum(view(v, 3:12))
     PF = ((PFsum - 10) / 20) * 100
     #Role-Physical Functioning - RP
-    RPsum = sum(v[13:16])
+    RPsum = sum(view(v, 13:16))
     RP = ((RPsum - 4) / 4) * 100
     #Bodily pain - BP
     if v[21] > 0 && v[22] > 0
@@ -118,7 +124,7 @@ function sf36(v::AbstractVector; version = :v1)
         elseif v[21] == 6
             BP7 = 1
         else
-            error()
+            error("Question BP7(21)")
         end
         #BP8
         if v[22] == 1 && v[21] == 1
@@ -134,7 +140,7 @@ function sf36(v::AbstractVector; version = :v1)
         elseif v[22] == 5
             BP8 = 1
         else
-            error()
+            error("Question BP8(22)")
         end
     elseif v[21] > 0
         if v[21] == 1
@@ -150,7 +156,7 @@ function sf36(v::AbstractVector; version = :v1)
         elseif v[21] == 6
             BP7 = 1
         else
-            error()
+            error("Question BP7(21)")
         end
         BP8 = BP7
     elseif v[22] > 0
@@ -165,7 +171,7 @@ function sf36(v::AbstractVector; version = :v1)
         elseif v[22] == 5
             BP8 = 1
         else
-            error()
+            error("Question BP8(22)")
         end
         BP7 = BP8
     else
@@ -186,19 +192,19 @@ function sf36(v::AbstractVector; version = :v1)
     elseif v[1] == 5
         GH1 = 1
     else
-        error()
+        error("Question GH1(1)")
     end
 
     if 5 >= v[34] >= 1
         GH11b = 6 - v[34]
     else
-        error()
+        error("Question GH11b(34)")
     end
 
     if 5 >= v[36] >= 1
         GH11d = 6 - v[36]
     else
-        error()
+        error("Question GH11d(36)")
     end
     GHsum = GH1 + GH11b + GH11d + v[33] + v[35]
     GH = ((GHsum - 5)/ 20) * 100
@@ -207,12 +213,12 @@ function sf36(v::AbstractVector; version = :v1)
     if 6 >= v[23] >= 1
         VT9a = 7 - v[23]
     else
-        error()
+        error("Question VT9a(23)")
     end
     if 6 >= v[27] >= 1
         VT9e = 7 - v[27]
     else
-        error()
+        error("Question VT9e(27)")
     end
     VTsum = VT9a + VT9e + v[29] + v[31]
     VT = ((VTsum - 4)/ 20) * 100
@@ -221,26 +227,26 @@ function sf36(v::AbstractVector; version = :v1)
     if 5 >= v[20] >= 1
         SF6 = 6 - v[20]
     else
-        error()
+        error("Question SF6(20)")
     end
     SFsum = SF6 + v[32]
     SF = ((SFsum - 2)/ 8) * 100
 
     #RoleEmotional - RE
-    REsum = sum(v[17:19])
+    REsum = sum(view(v, 17:19))
     RE = ((REsum - 3)/ 3) * 100
 
     #Mental Health - MH
     if 6 >= v[26] >= 1
         MH9d = 7 - v[26]
     else
-        error()
+        error("Question MH9d(26)")
     end
 
     if 6 >= v[30] >= 1
         MH9h = 7 - v[30]
     else
-        error()
+        error("Question MH9h(30)")
     end
     MHsum = MH9d + MH9h + v[24] + v[25] + v[28]
     MH = ((MHsum - 5)/ 25) * 100
@@ -250,7 +256,7 @@ function sf36(v::AbstractVector; version = :v1)
     elseif version == :v2
         PCS, MCS = scorev2([PF, RP, BP, GH, VT, SF, RE, MH])
     else
-        error()
+        error("Unknown version!")
     end
 
     SF36Result(
@@ -297,7 +303,7 @@ const sf12mwdict = Dict(:PF02 => [3.93115, 1.8684, 0], :PF04 => [2.68282, 1.4310
 """
     sf12(v::AbstractVector{Int}; version = :v1)
 
-Calculate SF12 results for vector of answers `v`.
+Calculate SF12 results for vector of answers `v`:
 
 1 - GH1 
 
@@ -339,6 +345,8 @@ https://www.researchgate.net/profile/John-Ware-6/publication/291994160_How_to_sc
 
 """
 function sf12(v::AbstractVector{Int})
+
+    if length(v) != 12 error("Length is not 12!") end
     
     PF02 = (sf12pwdict[:PF02][v[2]], sf12mwdict[:PF02][v[2]]) #
     PF04 = (sf12pwdict[:PF04][v[3]], sf12mwdict[:PF04][v[3]]) #
