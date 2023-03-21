@@ -12,10 +12,15 @@ Terms and Conditions for Using the 36-Item Short Form Survey (SF-36):
 
 RAND hereby grants permission to use RAND 36-Item Short Form Health Survey in accordance with the following conditions, which shall be assumed by all to have been agreed to as a consequence of accepting and using this document:
 
-    Changes to the Health Survey may be made without the written permission of RAND. However, all such changes shall be clearly identified as having been made by the recipient.
-    The user of this Health Survey accepts full responsibility, and agrees to indemnify and hold RAND harmless, for the accuracy of any translations of the Health Survey into another language and for any errors, omissions, misinterpretations, or consequences thereof.
-    The user of this Health Survey accepts full responsibility, and agrees to indemnify and hold RAND harmless, for any consequences resulting from the use of the Health Survey.
-    The user of the 36-Item Health Survey will provide a credit line when printing and distributing this document acknowledging that it was developed at RAND as part of the Medical Outcomes Study.
+    Changes to the Health Survey may be made without the written permission of RAND. However, 
+    all such changes shall be clearly identified as having been made by the recipient.
+    The user of this Health Survey accepts full responsibility, and agrees to indemnify and hold RAND harmless, 
+    for the accuracy of any translations of the Health Survey into another language and for any errors, 
+    omissions, misinterpretations, or consequences thereof.
+    The user of this Health Survey accepts full responsibility, and agrees to indemnify and hold RAND harmless,
+    for any consequences resulting from the use of the Health Survey.
+    The user of the 36-Item Health Survey will provide a credit line when printing and distributing this document acknowledging 
+    that it was developed at RAND as part of the Medical Outcomes Study.
     No further written permission is needed for use of this Health Survey.
 
 

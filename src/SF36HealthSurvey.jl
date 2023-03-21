@@ -300,17 +300,29 @@ const sf12mwdict = Dict(:PF02 => [3.93115, 1.8684, 0], :PF04 => [2.68282, 1.4310
 Calculate SF12 results for vector of answers `v`.
 
 1 - GH1 
+
 2 - PF02
+
 3 - PF04
+
 4 - RP2
+
 5 - RP3
+
 6 - RE2
+
 7 - RE3
+
 8 - BP2
+
 9 - MH3
+
 10 - VT2
+
 11 - MH4
+
 12 - SF2
+
 
 Reference:
 
