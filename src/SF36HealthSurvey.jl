@@ -99,7 +99,7 @@ Vector `v`:
 23,27,29,31 - Vitality (VT) - 9a, 9e, 9g, 9i 
 
 """
-function sf36(v::AbstractVector; version = :v1)
+function sf36(v; version = :v1)
 
     if length(v) != 36 error("Length is not 36!") end
 
@@ -344,7 +344,7 @@ See also: https://orthotoolkit.com/sf-12/
 https://www.researchgate.net/profile/John-Ware-6/publication/291994160_How_to_score_SF-12_items/links/58dfc42f92851c369548e04e/How-to-score-SF-12-items.pdf
 
 """
-function sf12(v::AbstractVector{Int})
+function sf12(v)
 
     if length(v) != 12 error("Length is not 12!") end
     
