@@ -1,7 +1,7 @@
 name = "SF36HealthSurvey"
 uuid = "727fe6bb-9b0f-4205-9895-5e3cff32d72d"
 authors = ["Vladimir Arnautov"]
-version = "0.1.0"
+version = "0.1.1"
 
 [compat]
 julia = "1"
