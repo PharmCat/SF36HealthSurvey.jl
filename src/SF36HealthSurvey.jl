@@ -70,7 +70,7 @@ function scorev2(v)
 end
 
 """
-    sf36(v::AbstractVector; version = :v1)
+    sf36(v; version = :v1)
 
 Calculate SF36 results for vector of answers `v`.
 
@@ -301,7 +301,7 @@ const sf12mwdict = Dict(:PF02 => [3.93115, 1.8684, 0], :PF04 => [2.68282, 1.4310
 =#
 
 """
-    sf12(v::AbstractVector{Int}; version = :v1)
+    sf12(v; version = :v1)
 
 Calculate SF12 results for vector of answers `v`:
 
